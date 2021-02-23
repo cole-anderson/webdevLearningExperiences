@@ -1,0 +1,3 @@
+/home/glados/Documents/Projects/anotherCalculator/backendC++/build/CMakeFiles/rebuild_cache.dir
+/home/glados/Documents/Projects/anotherCalculator/backendC++/build/CMakeFiles/edit_cache.dir
+/home/glados/Documents/Projects/anotherCalculator/backendC++/build/CMakeFiles/CalculatorAPI.dir
