@@ -1,4 +1,4 @@
-# learningReact
+# learning JS,TS, React and other frameworks
 Compilation of completed projects while learning React/ReactNative/Javascript/Typescript 
 
 1) anotherCalculator
