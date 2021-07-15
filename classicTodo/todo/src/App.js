@@ -14,6 +14,9 @@ class App extends Component {
       <div className="App" >
         {/* <LearningComponents /> */}
         <Counter />
+        <Counter by={1} />
+        <Counter by={5} />
+        <Counter by={10} />
       </div>
     );
   }
