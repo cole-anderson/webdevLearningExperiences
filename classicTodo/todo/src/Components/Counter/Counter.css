@@ -1,11 +1,30 @@
-button {
+.pos {
     background-color: green;
     font-size: 15px;
     padding: 15px 30px;
     width: 100px;
+    display: inline-block;
+    border: 1px solid black;
+    
 }
-
+.neg {
+    background-color: rgb(202, 19, 19);
+    font-size: 15px;
+    padding: 15px 30px;
+    width: 100px;
+    display: inline-block;
+    border: 1px solid black;
+}
 .count {
     font-size: 55px;
     padding: 15px 30px;
+}
+
+.reset{
+    background-color: rgb(19, 159, 202);
+    font-size: 15px;
+    padding: 15px 30px;
+    width: 200px;
+    display: inline-block;
+    border: 1px solid black;
 }
