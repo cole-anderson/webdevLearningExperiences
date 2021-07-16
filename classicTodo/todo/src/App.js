@@ -6,6 +6,7 @@ import { Component } from 'react';
 // import SecondComponent from './Components/Examples/SecondComponent'
 // import ThirdComponent from './Components/Examples/ThirdComponent'
 
+// import CounterButton from './Components/Counter/Counter'
 import Counter from './Components/Counter/Counter'
 
 class App extends Component {
@@ -14,9 +15,6 @@ class App extends Component {
       <div className="App" >
         {/* <LearningComponents /> */}
         <Counter />
-        <Counter by={1} />
-        <Counter by={5} />
-        <Counter by={10} />
       </div>
     );
   }

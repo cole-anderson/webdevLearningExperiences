@@ -3,6 +3,40 @@ import './Counter.css'
 import PropTypes from 'prop-types'
 
 class Counter extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            //js obj
+            counter: 0
+
+        }
+        this.increment = this.increment.bind(this);
+    }
+
+    render() {
+        return (
+            <div className="counter" >
+                {/* <LearningComponents /> */}
+                <CounterButton by={1} incrementMethod={this.increment} />
+                <CounterButton by={5} incrementMethod={this.increment} />
+                <CounterButton by={10} incrementMethod={this.increment} />
+                <span className="count" >{this.state.counter} </span>
+            </div>
+        );
+    }
+    increment(by) {
+        //update state counter ++
+        console.log(`increment from parent - ${by}`);
+        this.setState({
+            counter: this.state.counter + by
+        });
+    }
+
+}
+
+
+class CounterButton extends Component {
     //Define inital state in constructor
     //state => counter 0
     constructor() {
@@ -18,8 +52,8 @@ class Counter extends Component {
     render() {
         return (
             <div className="counter" >
-                <button onClick={this.increment}> +{this.props.by}</button>
-                <span className="count" >{this.state.counter} </span>
+                < button onClick={this.increment} > +{this.props.by}</button >
+                {/* <span className="count" >{this.state.counter} </span> */}
             </div >
         );
     }
@@ -28,16 +62,16 @@ class Counter extends Component {
         console.log('increment');
         this.setState({
             counter: this.state.counter + this.props.by
-
         });
+        this.props.incrementMethod(this.props.by);
     }
 }
 
-Counter.defaultProps = {
+CounterButton.defaultProps = {
     by: 1
 }
-Counter.propTypes = {
-    by: PropTypes
+CounterButton.propTypes = {
+    by: PropTypes.number
 }
 export default Counter;
 
