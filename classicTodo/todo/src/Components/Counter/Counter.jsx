@@ -63,43 +63,43 @@ class Counter extends Component {
 class CounterButton extends Component {
     //Define inital state in constructor
     //state => counter 0
-    constructor() {
-        super();
-        this.state = {
-            //js obj
-            counter: 0
-        }
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
-    }
+    // constructor() {
+    //     super();
+    //     // this.state = {
+    //     //     //js obj
+    //     //     counter: 0
+    //     // }
+    //     // this.increment = this.increment.bind(this);
+    //     // this.decrement = this.decrement.bind(this);
+    // }
 
 
     render() {
         return (
             <div className="counter" >
-                < button className="pos" onClick={this.increment} > +{this.props.by}</button >
-                < button className="neg" onClick={this.decrement} > -{this.props.by}</button >
+                < button className="pos" onClick={() => this.props.incrementMethod(this.props.by)} > +{this.props.by}</button >
+                < button className="neg" onClick={() => this.props.decrementMethod(this.props.by)} > -{this.props.by}</button >
                 {/* <span className="count" >{this.state.counter} </span> */}
             </div >
         );
     }
-    increment() {
-        //update state counter ++
-        console.log('increment');
-        this.setState({
-            counter: this.state.counter + this.props.by
-        });
+    // increment() {
+    //     //update state counter ++
+    //     console.log('increment');
+    //     this.setState({
+    //         counter: this.state.counter + this.props.by
+    //     });
 
-        this.props.incrementMethod(this.props.by);
-    }
-    decrement() {
-        //update state counter ++
-        console.log('decrement');
-        this.setState({
-            counter: this.state.counter - this.props.by
-        });
-        this.props.decrementMethod(this.props.by);
-    }
+    //     this.props.incrementMethod(this.props.by);
+    // }
+    // decrement() {
+    //     //update state counter ++
+    //     console.log('decrement');
+    //     this.setState({
+    //         counter: this.state.counter - this.props.by
+    //     });
+    //     this.props.decrementMethod(this.props.by);
+    // }
 
 }
 

@@ -7,14 +7,17 @@ import { Component } from 'react';
 // import ThirdComponent from './Components/Examples/ThirdComponent'
 
 // import CounterButton from './Components/Counter/Counter'
-import Counter from './Components/Counter/Counter'
+// import Counter from './Components/Counter/Counter'
+
+import TodoApp from './Components/Todo/TodoApp'
 
 class App extends Component {
   render() {
     return (
       <div className="App" >
         {/* <LearningComponents /> */}
-        <Counter />
+        {/* <Counter /> */}
+        <TodoApp />
       </div>
     );
   }
