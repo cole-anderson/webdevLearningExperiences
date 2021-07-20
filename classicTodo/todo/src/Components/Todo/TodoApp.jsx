@@ -18,9 +18,12 @@ class LoginComponent extends Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            hasLoginFailed: false,
+            showSuccessMessage: false
         }
         this.handleUserPassChange = this.handleUserPassChange.bind(this);
+        this.loginClicked = this.loginClicked.bind(this);
         // this.handleUsernameChange = this.handleUsernameChange.bind(this);
         // this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
@@ -38,18 +41,49 @@ class LoginComponent extends Component {
         });
     }
 
-
+    loginClicked() {
+        //temp hard code:
+        if (this.state.username === 'cole' && this.state.password === '1234') {
+            console.log("LOGIN SUCCESS");
+            this.setState({ showSuccessMessage: true });
+            this.setState({ hasLoginFailed: false });
+        }
+        else {
+            console.log("LOGIN FAILED");
+            this.setState({ showSuccessMessage: false });
+            this.setState({ hasLoginFailed: true });
+        }
+    }
 
     render() {
         return (
             <div>
+                <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+                <ShowSuccess showSuccessMessage={this.state.showSuccessMessage} />
                 User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleUserPassChange} />
                 Password: <input type="password" name="password" value={this.state.password} onChange={this.handleUserPassChange} />
-                <button> Login </button>
+                <button onClick={this.loginClicked}> Login </button>
             </div>
         )
     };
+
 }
+function ShowInvalidCredentials(props) {
+    if (props.hasLoginFailed) {
+        return (<div>Invalid Credentials</div>)
+    }
+    else
+        return null;
+
+}
+function ShowSuccess(props) {
+    if (props.showSuccessMessage) {
+        return (<div>Login Successful</div>)
+    }
+    else
+        return null;
+}
+
 
 
 export default TodoApp;
