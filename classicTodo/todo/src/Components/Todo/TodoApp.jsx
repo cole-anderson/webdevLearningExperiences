@@ -8,11 +8,13 @@ class TodoApp extends Component {
                 <Router>
                     <>
                         {/* Routes */}
-                        <Route path="/" component={LoginComponent} />
-                        <Route path="/login" component={LoginComponent} />
-                        <Route path="/welcome" component={WelcomeComponent} />
-                        {/* Below displays error if url undefined by programmer*/}
-                        <Route path="" component={ErrorComponent} />
+                        <Switch>
+                            <Route path="/" component={LoginComponent} />
+                            <Route path="/login" component={LoginComponent} />
+                            <Route path="/welcome" component={WelcomeComponent} />
+                            {/* Below displays error if url undefined by programmer*/}
+                            <Route path="" component={ErrorComponent} />
+                        </Switch>
                     </>
                 </Router>
                 {/* <LoginComponent />
