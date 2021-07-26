@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-/**
- * Class: Welcome Component
- */
+
 class TodoApp extends Component {
     render() {
         return (
             <div className="TodoApp">
                 <Router>
                     <>
+                        {/* Routes */}
                         <Route path="/" component={LoginComponent} />
                         <Route path="/login" component={LoginComponent} />
                         <Route path="/welcome" component={WelcomeComponent} />
+                        {/* Below displays error if url undefined by programmer*/}
+                        <Route path="" component={ErrorComponent} />
                     </>
                 </Router>
                 {/* <LoginComponent />
@@ -20,13 +21,22 @@ class TodoApp extends Component {
         )
     }
 }
+/**
+ * Displays error if url not defined
+ */
+function ErrorComponent() {
+    return <div>An Error Occurred. Contact Admin</div>
+}
+/**
+ * Class: Welcome Component(displays if login correct)
+ */
 class WelcomeComponent extends Component {
     render() {
         return <div>Welcome Cole</div>
     }
 }
 /**
- * Class: Login Component
+ * Class: Login Component(prompts user for login information)
  */
 class LoginComponent extends Component {
     constructor(props) {
@@ -59,9 +69,10 @@ class LoginComponent extends Component {
     loginClicked() {
         //temp hard code:
         if (this.state.username === 'cole' && this.state.password === '1234') {
+            this.props.history.push("/welcome");
             console.log("LOGIN SUCCESS");
-            this.setState({ showSuccessMessage: true });
-            this.setState({ hasLoginFailed: false });
+            // this.setState({ showSuccessMessage: true });
+            // this.setState({ hasLoginFailed: false });
         }
         else {
             console.log("LOGIN FAILED");
