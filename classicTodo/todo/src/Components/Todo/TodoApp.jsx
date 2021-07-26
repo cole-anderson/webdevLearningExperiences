@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class TodoApp extends Component {
     render() {
@@ -9,10 +9,9 @@ class TodoApp extends Component {
                     <>
                         {/* Routes */}
                         <Switch>
-                            <Route path="/" component={LoginComponent} />
-                            <Route path="/login" component={LoginComponent} />
-                            <Route path="/welcome" component={WelcomeComponent} />
-                            {/* Below displays error if url undefined by programmer*/}
+                            <Route path="/" exact component={LoginComponent} />
+                            <Route path="/login" exact component={LoginComponent} />
+                            <Route path="/welcome/:name" exact component={WelcomeComponent} />
                             <Route path="" component={ErrorComponent} />
                         </Switch>
                     </>
@@ -34,9 +33,11 @@ function ErrorComponent() {
  */
 class WelcomeComponent extends Component {
     render() {
-        return <div>Welcome Cole</div>
+        return <div>Welcome {this.props.match.params.name}</div>
+
     }
 }
+
 /**
  * Class: Login Component(prompts user for login information)
  */
@@ -71,7 +72,7 @@ class LoginComponent extends Component {
     loginClicked() {
         //temp hard code:
         if (this.state.username === 'cole' && this.state.password === '1234') {
-            this.props.history.push("/welcome");
+            this.props.history.push(`/welcome/${this.state.username}`);
             console.log("LOGIN SUCCESS");
             // this.setState({ showSuccessMessage: true });
             // this.setState({ hasLoginFailed: false });
