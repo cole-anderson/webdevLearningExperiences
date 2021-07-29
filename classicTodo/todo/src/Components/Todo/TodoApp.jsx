@@ -12,6 +12,7 @@ class TodoApp extends Component {
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" exact component={LoginComponent} />
                             <Route path="/welcome/:name" exact component={WelcomeComponent} />
+                            <Route path="/todos" exact component={ListTodoComponent} />
                             <Route path="" component={ErrorComponent} />
                         </Switch>
                     </>
@@ -27,6 +28,51 @@ class TodoApp extends Component {
  */
 function ErrorComponent() {
     return <div>An Error Occurred. Contact Admin</div>
+}
+/**
+ * Class:list Todo Component(displays if login correct)
+ */
+class ListTodoComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            todos:
+                [
+                    { id: 1, description: 'learn react' },
+                    { id: 2, description: 'learn unity' },
+                    { id: 3, description: 'learn scala' }
+                ]
+        };
+    }
+
+
+    render() {
+        return (
+            <div>
+                <h1>List Todos:</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.todos.map(
+                                to =>
+
+                                    <tr>
+                                        <td>{to.id}</td>
+                                        <td>{to.description}</td>
+                                    </tr>
+                            )}
+                    </tbody>
+                </table>
+
+            </div>
+        )
+    }
 }
 /**
  * Class: Welcome Component(displays if login correct)
@@ -74,8 +120,8 @@ class LoginComponent extends Component {
         if (this.state.username === 'cole' && this.state.password === '1234') {
             this.props.history.push(`/welcome/${this.state.username}`);
             console.log("LOGIN SUCCESS");
-            // this.setState({ showSuccessMessage: true });
-            // this.setState({ hasLoginFailed: false });
+            // this.setState({showSuccessMessage: true });
+            // this.setState({hasLoginFailed: false });
         }
         else {
             console.log("LOGIN FAILED");
