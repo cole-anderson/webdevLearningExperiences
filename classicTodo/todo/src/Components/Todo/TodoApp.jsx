@@ -8,6 +8,7 @@ class TodoApp extends Component {
                 <Router>
                     <>
                         {/* Routes */}
+                        <HeaderComponent />
                         <Switch>
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" exact component={LoginComponent} />
@@ -15,6 +16,7 @@ class TodoApp extends Component {
                             <Route path="/todos" exact component={ListTodoComponent} />
                             <Route path="" component={ErrorComponent} />
                         </Switch>
+                        <FooterComponent />
                     </>
                 </Router>
                 {/* <LoginComponent />
@@ -22,6 +24,34 @@ class TodoApp extends Component {
             </div>
         )
     }
+}
+class HeaderComponent extends Component {
+    render() {
+        return (
+            <header>
+                <nav className="navbar navbar-expand-md">
+                    <div><a>Github</a></div>
+                    <ul class="navbar-nav">
+                        <li className="navbar-link">Home</li>
+                        <li className="navbar-link">Todos</li>
+                    </ul>
+                    <ul className="navbar-nav">
+                        <li className="nav-link">Login</li>
+                        <li className="nav-link">Logout</li>
+                    </ul>
+                </nav>
+            </header>
+        )
+    };
+}
+class FooterComponent extends Component {
+    render() {
+        return (
+            <div>
+                <hr /> Footer
+            </div>
+        )
+    };
 }
 /**
  * Displays error if url not defined
@@ -38,9 +68,9 @@ class ListTodoComponent extends Component {
         this.state = {
             todos:
                 [
-                    { id: 1, description: 'learn react' },
-                    { id: 2, description: 'learn unity' },
-                    { id: 3, description: 'learn scala' }
+                    { id: 1, description: 'learn react', done: false, targetDate: new Date() },
+                    { id: 2, description: 'learn unity', done: false, targetDate: new Date() },
+                    { id: 3, description: 'learn scala', done: false, targetDate: new Date() }
                 ]
         };
     }
@@ -54,7 +84,9 @@ class ListTodoComponent extends Component {
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>description</th>
+                            <th>Description</th>
+                            <th>Completion Status</th>
+                            <th>Target Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,6 +97,8 @@ class ListTodoComponent extends Component {
                                     <tr>
                                         <td>{to.id}</td>
                                         <td>{to.description}</td>
+                                        <td>{to.done.toString()}</td>
+                                        <td>{to.targetDate.toString()}</td>
                                     </tr>
                             )}
                     </tbody>

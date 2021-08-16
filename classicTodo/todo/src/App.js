@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
+import './bootstrap.css';
 
 // import FirstComponent from './Components/Examples/FirstComponent'
 // import SecondComponent from './Components/Examples/SecondComponent'
