@@ -29,15 +29,15 @@ class HeaderComponent extends Component {
     render() {
         return (
             <header>
-                <nav className="navbar navbar-expand-md">
-                    <div><a>Github</a></div>
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+                    <div><a href="https://github.com/sinpulse" className="navbar-brand">Github</a></div>
                     <ul class="navbar-nav">
-                        <li className="navbar-link">Home</li>
-                        <li className="navbar-link">Todos</li>
+                        <li> <Link className="nav-link" to="/welcome">Home</Link> </li>
+                        <li> <Link className="nav-link" to="/todos">Todos</Link></li>
                     </ul>
-                    <ul className="navbar-nav">
-                        <li className="nav-link">Login</li>
-                        <li className="nav-link">Logout</li>
+                    <ul className="navbar-nav navbar-collapse justify-content-end">
+                        <li><Link className="nav-link" to="/login">Login</Link></li>
+                        <li><Link className="nav-link" to="/logout">Logout</Link></li>
                     </ul>
                 </nav>
             </header>
