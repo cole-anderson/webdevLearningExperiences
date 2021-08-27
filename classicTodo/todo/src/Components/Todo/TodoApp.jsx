@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import AuthenticationService from './AuthenticationService.js'
+import AuthenticatedRoute from './AuthenticatedRoute'
 
 class TodoApp extends Component {
     render() {
@@ -12,9 +15,9 @@ class TodoApp extends Component {
                         <Switch>
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" exact component={LoginComponent} />
-                            <Route path="/welcome/:name" exact component={WelcomeComponent} />
-                            <Route path="/todos" exact component={ListTodoComponent} />
-                            <Route path="/logout" exact component={LogoutComponent} />
+                            <AuthenticatedRoute path="/welcome/:name" exact component={WelcomeComponent} />
+                            <AuthenticatedRoute path="/todos" exact component={ListTodoComponent} />
+                            <AuthenticatedRoute path="/logout" exact component={LogoutComponent} />
                             <Route path="" component={ErrorComponent} />
                         </Switch>
                         <FooterComponent />
@@ -28,23 +31,27 @@ class TodoApp extends Component {
 }
 class HeaderComponent extends Component {
     render() {
+        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+        console.log(isUserLoggedIn);
         return (
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                     <div><a href="https://github.com/sinpulse" className="navbar-brand">Github</a></div>
-                    <ul class="navbar-nav">
-                        <li> <Link className="nav-link" to="/welcome/cole">Home</Link> </li>
-                        <li> <Link className="nav-link" to="/todos">Todos</Link></li>
+                    <ul className="navbar-nav">
+                        {isUserLoggedIn && <li> <Link className="nav-link" to="/welcome/cole">Home</Link> </li>}
+                        {isUserLoggedIn && <li> <Link className="nav-link" to="/todos">Todos</Link></li>}
                     </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
-                        <li><Link className="nav-link" to="/login">Login</Link></li>
-                        <li><Link className="nav-link" to="/logout">Logout</Link></li>
+                        {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
+                        {isUserLoggedIn && <li><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
                     </ul>
                 </nav>
             </header>
         )
     };
 }
+// export default withRouter(HeaderComponent); //for later exports
+
 class FooterComponent extends Component {
     render() {
         return (
@@ -100,7 +107,7 @@ class ListTodoComponent extends Component {
                                 this.state.todos.map(
                                     to =>
 
-                                        <tr>
+                                        <tr key={to.id} >
                                             {/* <td>{to.id}</td> */}
                                             <td>{to.description}</td>
                                             <td>{to.done.toString()}</td>
@@ -122,7 +129,7 @@ class WelcomeComponent extends Component {
         return (
             <>
                 <h1>Welcome</h1>
-                <div clasName="container">
+                <div className="container">
                     Welcome {this.props.match.params.name}.You can manage todos < Link to="/todos" > here </Link >.
                 </div>
             </>
@@ -164,6 +171,7 @@ class LoginComponent extends Component {
     loginClicked() {
         //temp hard code:
         if (this.state.username === 'cole' && this.state.password === '1234') {
+            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`);
             console.log("LOGIN SUCCESS");
             // this.setState({showSuccessMessage: true });
