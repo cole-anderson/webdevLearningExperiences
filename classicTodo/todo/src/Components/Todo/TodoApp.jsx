@@ -14,6 +14,7 @@ class TodoApp extends Component {
                             <Route path="/login" exact component={LoginComponent} />
                             <Route path="/welcome/:name" exact component={WelcomeComponent} />
                             <Route path="/todos" exact component={ListTodoComponent} />
+                            <Route path="/logout" exact component={LogoutComponent} />
                             <Route path="" component={ErrorComponent} />
                         </Switch>
                         <FooterComponent />
@@ -32,7 +33,7 @@ class HeaderComponent extends Component {
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                     <div><a href="https://github.com/sinpulse" className="navbar-brand">Github</a></div>
                     <ul class="navbar-nav">
-                        <li> <Link className="nav-link" to="/welcome">Home</Link> </li>
+                        <li> <Link className="nav-link" to="/welcome/cole">Home</Link> </li>
                         <li> <Link className="nav-link" to="/todos">Todos</Link></li>
                     </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
@@ -47,9 +48,11 @@ class HeaderComponent extends Component {
 class FooterComponent extends Component {
     render() {
         return (
-            <div>
-                <hr /> Footer
-            </div>
+            <footer className="footer">
+                <span className="text-muted">
+                    All Rights Reserved Cole Anderson 2021
+                </span>
+            </footer>
         )
     };
 }
@@ -80,30 +83,33 @@ class ListTodoComponent extends Component {
         return (
             <div>
                 <h1>List Todos:</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Description</th>
-                            <th>Completion Status</th>
-                            <th>Target Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.todos.map(
-                                to =>
 
-                                    <tr>
-                                        <td>{to.id}</td>
-                                        <td>{to.description}</td>
-                                        <td>{to.done.toString()}</td>
-                                        <td>{to.targetDate.toString()}</td>
-                                    </tr>
-                            )}
-                    </tbody>
-                </table>
+                <div className="container">
 
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                {/* <th>id</th> */}
+                                <th>Description</th>
+                                <th>Completion Status</th>
+                                <th>Target Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.todos.map(
+                                    to =>
+
+                                        <tr>
+                                            {/* <td>{to.id}</td> */}
+                                            <td>{to.description}</td>
+                                            <td>{to.done.toString()}</td>
+                                            <td>{to.targetDate.toString()}</td>
+                                        </tr>
+                                )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
@@ -113,9 +119,13 @@ class ListTodoComponent extends Component {
  */
 class WelcomeComponent extends Component {
     render() {
-        return (<div>
-            Welcome {this.props.match.params.name}. You can manage todos <Link to="/todos"> here </Link>.
-        </div>
+        return (
+            <>
+                <h1>Welcome</h1>
+                <div clasName="container">
+                    Welcome {this.props.match.params.name}.You can manage todos < Link to="/todos" > here </Link >.
+                </div>
+            </>
         )
     };
 }
@@ -169,17 +179,33 @@ class LoginComponent extends Component {
     render() {
         return (
             <div>
-                {this.state.hasLoginFailed && <div>Invalid Credentials</div>}
-                {this.state.showSuccessMessage && <div>Login Success </div>}
-                {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+                <h1>Login</h1>
+                <div className="container">
+                    {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
+                    {this.state.showSuccessMessage && <div>Login Success </div>}
+                    {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
                 <ShowSuccess showSuccessMessage={this.state.showSuccessMessage} /> */}
-                User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleUserPassChange} />
-                Password: <input type="password" name="password" value={this.state.password} onChange={this.handleUserPassChange} />
-                <button onClick={this.loginClicked}> Login </button>
-            </div>
+                    User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleUserPassChange} />
+                    Password: <input type="password" name="password" value={this.state.password} onChange={this.handleUserPassChange} />
+                    <button className="btn btn-success" onClick={this.loginClicked}> Login </button>
+                </div>
+            </div >
         )
     };
 
+}
+
+class LogoutComponent extends Component {
+    render() {
+        return (
+            <div>
+                <h1>You Have Logged Out</h1>
+                <div className="container">
+                    Thanks for your patronage!
+                </div>
+            </div>
+        )
+    }
 }
 // function ShowInvalidCredentials(props) {
 //     if (props.hasLoginFailed) {
