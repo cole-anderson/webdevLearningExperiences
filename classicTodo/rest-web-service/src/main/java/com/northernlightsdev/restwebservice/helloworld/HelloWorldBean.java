@@ -1,4 +1,4 @@
-package com.northernlightsdev.restwebservice;
+package com.northernlightsdev.restwebservice.helloworld;
 
 public class HelloWorldBean {
 

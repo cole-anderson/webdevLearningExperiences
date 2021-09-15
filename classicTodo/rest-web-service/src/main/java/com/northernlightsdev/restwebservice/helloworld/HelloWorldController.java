@@ -1,5 +1,8 @@
-package com.northernlightsdev.restwebservice;
+package com.northernlightsdev.restwebservice.helloworld;
 
+import javax.management.RuntimeErrorException;
+
+import org.apache.tomcat.util.http.fileupload.ThresholdingOutputStream;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +29,14 @@ public class HelloWorldController {
 	//hello-world-bean
 	@GetMapping(path = "/hello-world-bean")
 	public HelloWorldBean helloWorldBean() {
-		return new HelloWorldBean("Hello World");
+		return new HelloWorldBean("Hello World Bean");
 	}
 	
 	//hello-world/path-variable/cole
 	@GetMapping(path = "/hello-world/path-variable/{name}")
 	public HelloWorldBean helloWorldPath(@PathVariable String name) {
+//		throw new RuntimeException("error api");
+		
 		return new HelloWorldBean(String.format("Hello World, %s", name));
 	}
 
