@@ -35,17 +35,10 @@ scene.add(pointLight, /*ambientLight*/);
 scene.add(torus);
 
 
-
 //Animation Loop(Main)
 function animate() {
   requestAnimationFrame(animate);
-  document.onkeydown = function (e) {
-    switch (e.keyCode) {
-      case 37:
-        torus.rotation.x += 0.1;
-        break;
-    }
-  }
+
 
   //Rotate Animation:
   // torus.rotation.x += 0.01;

@@ -11,7 +11,7 @@ function App() {
 
       <div className="row">
         <div className="col-md-2">
-          <nav>
+          <nav>\
             <ul className="list-group">
               <li className="list-group-item">
                 <a href="/">Home</a>
