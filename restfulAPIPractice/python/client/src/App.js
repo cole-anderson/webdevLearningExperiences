@@ -4,8 +4,35 @@ function App() {
 
   const [data, setData] = useState([{}]);
 
+
+
+  //Base Implementation:
+  // useEffect(() => {
+  //   fetch("/members").then(
+  //     res => res.json()
+  //   ).then(
+  //     data => {
+  //       setData(data)
+  //       console.log(data)
+  //     }
+  //   )
+  // })
+  // return (
+  //   <div>
+  //     {(typeof data.members === "undefined") ? (
+  //       <p>Searching...</p>
+  //     ) : (
+  //       data.members.map((member, i) => (
+  //         <p key={i}>{member}</p>
+  //       ))
+  //     )}
+  //   </div>
+  // );
+
+  //Re-Implementation
+
   useEffect(() => {
-    fetch("/members").then(
+    fetch("/portfolio").then(
       res => res.json()
     ).then(
       data => {
@@ -16,15 +43,17 @@ function App() {
   })
   return (
     <div>
-      {(typeof data.members === "undefined") ? (
+      {(typeof data.coins === "undefined") ? (
         <p>Searching...</p>
       ) : (
-        data.members.map((member, i) => (
-          <p key={i}>{member}</p>
+        data.coins.map((coins, i) => (
+          <p key={i}>{coins}</p>
         ))
       )}
     </div>
   );
+
+
 };
 
 
